@@ -1,5 +1,5 @@
 version: 0.2
-phasess:
+phases:
   install:
     runtime-versions:
       nodejs: 20
@@ -13,5 +13,5 @@ phasess:
       - ng build -c production
 artifacts:
   base-directory: dist/my-angular-project
-  mfiles:
+  files:
     - '**/*'

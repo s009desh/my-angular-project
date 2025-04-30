@@ -1,0 +1,17 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+    commands:
+      - npm install -g @angular/cli@17
+      - wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor | tee /etc/apt/keyrings/chrome.gpg
+      - echo "deb [signed-by=/etc/apt/keyrings/chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list
+      - apt-get -y update
+      - apt-get -y install google-chrome-stableng build -c production
+  pre_build:
+    commands:
+      - npm install
+  build:
+    commands:
+      - ng test --no-watch --no-progress --browsers=ChromeHeadlessCI
